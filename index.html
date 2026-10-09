@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=cd5609bfb1">
+<link rel="stylesheet" href="style.css?v=891527fbd5">
 <style>
 :root {
   --шрифт-заголовков: Manrope, system-ui, sans-serif;
@@ -429,6 +429,174 @@
     <figure class="фото кадр"><picture><source media="(min-width: 900px)" srcset="img/viktoriya-noutbuk-4x5.webp"><img src="img/viktoriya-noutbuk.webp" alt="Виктория Воронцова за работой у ноутбука" loading="lazy" decoding="async"></picture></figure>
   </div>
 </div>
+</section>
+<section class="блок блок--решение блок--тихо тёмный второй" id="экран-04" data-тип="решение" data-вёрстка="своя">
+<div class="блок__внутри">
+  <div class="секция__шапка секция__шапка--центр">
+    <p class="кикер">Как проходит работа</p>
+    <h2>От первого созвона до работающей школы — шесть шагов</h2>
+  </div>
+  <ol class="шаги">
+    <li class="шаг">
+      <span class="шаг__номер">1</span>
+      <div class="шаг__текст">
+        <h3 class="шаг__имя">Бесплатная консультация</h3>
+        <p class="шаг__суть">30 минут разбираем задачу, и вы уходите с планом</p>
+      </div>
+    </li>
+    <li class="шаг">
+      <span class="шаг__номер">2</span>
+      <div class="шаг__текст">
+        <h3 class="шаг__имя">Техническое задание</h3>
+        <p class="шаг__суть">помогу составить, подсвечу дыры в логике до запуска, а не после, и если увижу, как усилить продажи или упростить путь ученика, — расскажу</p>
+      </div>
+    </li>
+    <li class="шаг">
+      <span class="шаг__номер">3</span>
+      <div class="шаг__текст">
+        <h3 class="шаг__имя">Договор и предоплата</h3>
+        <p class="шаг__суть">работаю по договору, предоплата 50&nbsp;%; цена меняется, только если меняется задача, и это обговариваем заранее</p>
+      </div>
+    </li>
+    <li class="шаг">
+      <span class="шаг__номер">4</span>
+      <div class="шаг__текст">
+        <h3 class="шаг__имя">Настройка и проверка</h3>
+        <p class="шаг__суть">тестирую на каждом этапе, отчёты присылаю по запросу</p>
+      </div>
+    </li>
+    <li class="шаг">
+      <span class="шаг__номер">5</span>
+      <div class="шаг__текст">
+        <h3 class="шаг__имя">Сдача</h3>
+        <p class="шаг__суть">всё работает по техническому заданию, инструкции для команды — бонусом</p>
+      </div>
+    </li>
+    <li class="шаг">
+      <span class="шаг__номер">6</span>
+      <div class="шаг__текст">
+        <h3 class="шаг__имя">Две недели после сдачи</h3>
+        <p class="шаг__суть">остаюсь на связи для правок; цена правок — по сложности</p>
+      </div>
+    </li>
+  </ol>
+  <div class="итог-врезка">
+    <span class="итог-врезка__знак"><svg class="иконка" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 12.5l4.5 4.5L19 7"/>
+</svg></span>
+    <p>Пока идёт работа, я на связи в рабочие дни с 10 до 19 по Москве. В день вашего эфира я рядом — от начала до конца</p>
+  </div>
+</div>
+<script>
+/* «Линия проводит путь»: прогресс прокрутки списка шагов → сколько линии нарисовано, какие кружки горят.
+   Включается только с первой прокруткой и только если экран ещё ниже окна: снимок всей страницы без прокрутки
+   (проверка, превью) и тот, кто открыл страницу сразу на этом экране, видят всё открытым. */
+(() => {
+  const экран = document.getElementById("экран-04"); if (!экран) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const список = экран.querySelector(".шаги"), итог = экран.querySelector(".итог-врезка");
+  const шаги = [...экран.querySelectorAll(".шаг")]; if (!список || !шаги.length) return;
+  const n = шаги.length; let ждём = false;
+  const обновить = () => {
+    ждём = false;
+    const r = список.getBoundingClientRect(), вид = innerHeight;
+    const внизу = scrollY + вид >= document.documentElement.scrollHeight - 4;
+    // старт — верх списка на 80 % высоты окна, финиш — низ списка на 65 %; у самого низа страницы — всё
+    const начало = r.top - вид * .8, путь = r.height + вид * .15;
+    const t = внизу ? n : Math.max(0, Math.min(1, -начало / путь)) * n;
+    шаги.forEach((ш, i) => {
+      ш.classList.toggle("горит", t > i + .02);
+      ш.style.setProperty("--заливка", Math.max(0, Math.min(1, (t - i - .15) / .8)).toFixed(3));
+    });
+    const итогВидно = итог && итог.getBoundingClientRect().top < вид * .9;
+    экран.classList.toggle("дошли", t >= n - .01 || итогВидно);
+  };
+  const включить = () => {
+    removeEventListener("scroll", включить);
+    if (экран.getBoundingClientRect().top < innerHeight) return;   // экран уже на виду — не прячем то, что человек видит
+    обновить(); экран.classList.add("движение");
+    addEventListener("scroll", () => { if (!ждём) { ждём = true; requestAnimationFrame(обновить); } }, { passive: true });
+    addEventListener("resize", обновить);
+  };
+  addEventListener("scroll", включить, { passive: true });
+})();
+</script>
+</section>
+<section class="блок блок--контакты блок--тихо тёмный" id="экран-05" data-тип="контакты" data-вёрстка="своя">
+<div class="блок__внутри">
+  <div class="связь">
+    <div class="связь__слева">
+      <div class="секция__шапка">
+        <p class="кикер">Контакты</p>
+        <h2>Обсудим вашу задачу за 30 минут</h2>
+        <p class="лид секция__лид">Напишите, как вам удобнее, — отвечу и договоримся о времени созвона</p>
+      </div>
+      <ul class="каналы">
+        <li><a class="канал" href="https://t.me/vorontsova_va">
+          <span class="канал__знак"><svg class="иконка" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21 4L3 11l6 2 2 6 3-4 5 3z"/>
+  <path d="M9 13l10-8"/>
+</svg></span>
+          <span class="канал__текст"><span class="канал__что">Телеграм</span><span class="канал__адрес">@vorontsova_va</span></span>
+          <span class="канал__стрелка"><svg class="иконка" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 12h15M13 6l6 6-6 6"/>
+</svg></span>
+        </a></li>
+        <li><a class="канал" href="https://max.ru/u/f9LHodD0cOIgFIzMFPkF8hyhX_q4xfQte1QzovP8062O7aPX49e14ARFslU">
+          <span class="канал__знак"><svg class="иконка" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 5h16v11H9l-5 4z"/>
+</svg></span>
+          <span class="канал__текст"><span class="канал__что">MAX</span><span class="канал__адрес">Написать в MAX</span></span>
+          <span class="канал__стрелка"><svg class="иконка" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 12h15M13 6l6 6-6 6"/>
+</svg></span>
+        </a></li>
+        <li><a class="канал" href="mailto:vorontsova.stav@gmail.com">
+          <span class="канал__знак"><svg class="иконка" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="3" y="5" width="18" height="14" rx="2"/>
+  <path d="M3 7l9 6 9-6"/>
+</svg></span>
+          <span class="канал__текст"><span class="канал__что">Почта</span><span class="канал__адрес">vorontsova.stav@gmail.com</span></span>
+          <span class="канал__стрелка"><svg class="иконка" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 12h15M13 6l6 6-6 6"/>
+</svg></span>
+        </a></li>
+      </ul>
+    </div>
+    <div class="плита">
+      <span class="плита__знак"><svg class="иконка" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="12" r="9"/>
+  <path d="M12 7v5l3.5 2"/>
+</svg></span>
+      <p class="плита__текст"><strong>Бесплатная консультация 30 минут</strong> — разберём задачу вашей школы, и вы уйдёте с планом</p>
+      <a class="кнопка кнопка--главная" href="https://t.me/vorontsova_va">Написать в Телеграм</a>
+      <blockquote class="фраза">
+        <span class="фраза__знак" aria-hidden="true">“</span>
+        <p>Всё работает само, я почти не участвую<span class="фраза__знак фраза__знак--конец" aria-hidden="true">”</span></p>
+        <footer>Владимир</footer>
+      </blockquote>
+    </div>
+  </div>
+</div>
+<script>
+/* Тихое появление экрана «Контакты»: один раз, когда экран заходит в окно. */
+(() => {
+  const экран = document.getElementById("экран-05"); if (!экран) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+  const включить = () => {
+    removeEventListener("scroll", включить);
+    if (экран.getBoundingClientRect().top < innerHeight) return;   // экран уже на виду — не прячем
+    экран.classList.add("движение");
+    const н = new IntersectionObserver(записи => {
+      if (!записи.some(з => з.isIntersecting)) return;
+      экран.classList.add("видно", "только-что"); н.disconnect();
+      setTimeout(() => экран.classList.remove("только-что"), 1400);   // после появления наведение без задержек
+    }, { threshold: .15 });
+    н.observe(экран);
+  };
+  addEventListener("scroll", включить, { passive: true });
+})();
+</script>
 </section>
 <div class="липкая-кнопка липкая-кнопка--тёмная"><a class="кнопка кнопка--главная" href="https://t.me/vorontsova_va">Написать в Телеграм</a></div>
 <script>
