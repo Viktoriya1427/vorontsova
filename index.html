@@ -9,10 +9,8 @@
 <meta property="og:title" content="Виктория Воронцова — техспециалист онлайн-школ на GetCourse">
 <meta property="og:description" content="Беру на себя техническую часть онлайн-школы на GetCourse: запуски любого масштаба, сопровождение, технический аудит. Бесплатная консультация 30 минут">
 <meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=891527fbd5">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="style.css?v=c299f77754">
 <style>
 :root {
   --шрифт-заголовков: Manrope, system-ui, sans-serif;
@@ -290,7 +288,7 @@
 
 </script>
 </section>
-<section class="блок блок--прайс-лист блок--громко тёмный второй фон--зерно" id="экран-02" data-тип="прайс-лист" data-вёрстка="своя">
+<section class="блок блок--прайс-лист блок--громко тёмный второй фон--зерно" id="экран-02" data-тип="прайс-лист" data-вёрстка="своя" data-раздел="Услуги">
 <div class="блок__внутри">
   <div class="секция__шапка секция__шапка--центр">
     <p class="кикер">Чем могу быть полезна</p>
@@ -400,7 +398,7 @@
 })();
 </script>
 </section>
-<section class="блок блок--о-себе светлый" id="экран-03" data-тип="о-себе" data-вёрстка="своя">
+<section class="блок блок--о-себе светлый" id="экран-03" data-тип="о-себе" data-вёрстка="своя" data-раздел="Почему я">
 <div class="блок__внутри">
   <div class="разворот">
     <div class="рассказ">
@@ -430,7 +428,48 @@
   </div>
 </div>
 </section>
-<section class="блок блок--решение блок--тихо тёмный второй" id="экран-04" data-тип="решение" data-вёрстка="своя">
+<section class="блок блок--отзывы блок--тихо тёмный второй" id="экран-04" data-тип="отзывы" data-вёрстка="своя">
+<div class="блок__внутри">
+  <div class="секция__шапка секция__шапка--центр">
+    <p class="кикер">Отзывы</p>
+    <h2>Что говорят те, с кем я работала</h2>
+    <p class="лид секция__лид">Эксперт, продюсер и владелец агентства — о работе со мной</p>
+  </div>
+  <ul class="отзывы">
+    <li class="отзыв">
+      <blockquote class="отзыв__цитата">
+        <p class="отзыв__начало">«Проблем я не видела&nbsp;— знала, что их решат»</p>
+        <p class="отзыв__остальное">Мы делали запуски на миллионы, и около трети всего объёма было на Виктории: GetCourse, лендинги, интеграции, подрядчики. Часть маркетинговых решений тоже принимала она. Человек, на которого можно положиться</p>
+      </blockquote>
+      <p class="отзыв__подпись">
+        <cite class="отзыв__имя">Анастасия, эксперт проекта «Чёрный пояс»</cite>
+        <span class="отзыв__источник">Из рекомендаций</span>
+      </p>
+    </li>
+    <li class="отзыв">
+      <blockquote class="отзыв__цитата">
+        <p class="отзыв__начало">«Не делает „как написано“, а вникает»</p>
+        <p class="отзыв__остальное">За три месяца нужно было вывести к аудитории неизвестного человека. Вебинар прошёл отлично, автовебинарная воронка запустилась в срок, ни одного сорванного дедлайна. Виктория всегда переспросит: „Вы точно это учли?“ Со сложной технической задачей я первой пойду к ней</p>
+      </blockquote>
+      <p class="отзыв__подпись">
+        <cite class="отзыв__имя">Анна, продюсер запуска «Моя школа»</cite>
+        <span class="отзыв__источник">Из рекомендаций</span>
+      </p>
+    </li>
+    <li class="отзыв">
+      <blockquote class="отзыв__цитата">
+        <p class="отзыв__начало">«Ищет решение, а не отказывается от работы»</p>
+        <p class="отзыв__остальное">Мне не важно, знает ли специалист заранее, как сделать задачу. Важно, что он найдёт способ. Вика находит. Минусов назвать не могу, мы продолжаем работать вместе</p>
+      </blockquote>
+      <p class="отзыв__подпись">
+        <cite class="отзыв__имя">Светлана, владелец агентства</cite>
+        <span class="отзыв__источник">Из рекомендаций</span>
+      </p>
+    </li>
+  </ul>
+</div>
+</section>
+<section class="блок блок--решение блок--тихо тёмный" id="экран-05" data-тип="решение" data-вёрстка="своя">
 <div class="блок__внутри">
   <div class="секция__шапка секция__шапка--центр">
     <p class="кикер">Как проходит работа</p>
@@ -492,7 +531,7 @@
    Включается только с первой прокруткой и только если экран ещё ниже окна: снимок всей страницы без прокрутки
    (проверка, превью) и тот, кто открыл страницу сразу на этом экране, видят всё открытым. */
 (() => {
-  const экран = document.getElementById("экран-04"); if (!экран) return;
+  const экран = document.getElementById("экран-05"); if (!экран) return;
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const список = экран.querySelector(".шаги"), итог = экран.querySelector(".итог-врезка");
   const шаги = [...экран.querySelectorAll(".шаг")]; if (!список || !шаги.length) return;
@@ -522,15 +561,15 @@
 })();
 </script>
 </section>
-<section class="блок блок--контакты блок--тихо тёмный" id="экран-05" data-тип="контакты" data-вёрстка="своя">
+<section class="блок блок--контакты блок--тихо тёмный второй" id="экран-06" data-тип="контакты" data-вёрстка="своя">
 <div class="блок__внутри">
   <div class="связь">
-    <div class="связь__слева">
       <div class="секция__шапка">
         <p class="кикер">Контакты</p>
         <h2>Обсудим вашу задачу за 30 минут</h2>
         <p class="лид секция__лид">Напишите, как вам удобнее, — отвечу и договоримся о времени созвона</p>
       </div>
+    <img class="связь__фото" src="img/viktoriya-portret.webp" width="1122" height="1402" alt="Виктория Воронцова за рабочим столом с ноутбуком" loading="lazy" decoding="async">
       <ul class="каналы">
         <li><a class="канал" href="https://t.me/vorontsova_va">
           <span class="канал__знак"><svg class="иконка" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -562,26 +601,12 @@
 </svg></span>
         </a></li>
       </ul>
-    </div>
-    <div class="плита">
-      <span class="плита__знак"><svg class="иконка" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="12" cy="12" r="9"/>
-  <path d="M12 7v5l3.5 2"/>
-</svg></span>
-      <p class="плита__текст"><strong>Бесплатная консультация 30 минут</strong> — разберём задачу вашей школы, и вы уйдёте с планом</p>
-      <a class="кнопка кнопка--главная" href="https://t.me/vorontsova_va">Написать в Телеграм</a>
-      <blockquote class="фраза">
-        <span class="фраза__знак" aria-hidden="true">“</span>
-        <p>Всё работает само, я почти не участвую<span class="фраза__знак фраза__знак--конец" aria-hidden="true">”</span></p>
-        <footer>Владимир</footer>
-      </blockquote>
-    </div>
   </div>
 </div>
 <script>
 /* Тихое появление экрана «Контакты»: один раз, когда экран заходит в окно. */
 (() => {
-  const экран = document.getElementById("экран-05"); if (!экран) return;
+  const экран = document.getElementById("экран-06"); if (!экран) return;
   if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
   const включить = () => {
     removeEventListener("scroll", включить);
@@ -597,6 +622,31 @@
   addEventListener("scroll", включить, { passive: true });
 })();
 </script>
+</section>
+<section class="блок блок--подвал блок--тихо тёмный" id="экран-07" data-тип="подвал" data-вёрстка="своя">
+  <div class="блок__внутри">
+    <div class="подвал__сетка">
+      <div>
+        <span class="подвал__лого">Виктория Воронцова</span>
+        <p>Специалист по техническому сопровождению онлайн-школ на GetCourse</p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <div class="подвал__ссылки подвал__разделы">
+          <a href="#экран-02">Услуги</a>
+          <a href="#экран-03">Почему я</a>
+          <a href="#экран-04">Отзывы</a>
+          <a href="#экран-05">Как проходит работа</a>
+          <a href="#экран-06">Контакты</a>
+        </div>
+      </div>
+    </div>
+    <div class="подвал__низ">
+      <span>Воронцова Виктория Александровна, плательщик налога на профессиональный доход · ИНН 262308165980</span>
+      <span>Информация на сайте не является публичной офертой</span>
+      <span>© 2026</span>
+    </div>
+  </div>
 </section>
 <div class="липкая-кнопка липкая-кнопка--тёмная"><a class="кнопка кнопка--главная" href="https://t.me/vorontsova_va">Написать в Телеграм</a></div>
 <script>
